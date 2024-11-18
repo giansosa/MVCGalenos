@@ -30,13 +30,19 @@ namespace MVCGalenos
 
             app.UseRouting();
 
-            app.UseAuthorization();
+            _ = app.UseEndpoints(endpoints =>
+            {
+                _ = endpoints.MapControllerRoute(
+                    name: "default",
+                    pattern: "{controller=Home}/{action=Index}/{id?}");
+            });
 
             app.MapControllerRoute(
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
             app.Run();
+
+        }
         }
     }
-}
