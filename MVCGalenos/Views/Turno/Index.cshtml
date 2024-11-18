@@ -1,0 +1,49 @@
+﻿@model IEnumerable<MVCGalenos.Models.Turno>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Turnos</h1>
+
+<p>
+    <a asp-action="SelectSpecialty">Nuevo Turno</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Especialidad)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PrestadorMedico.NombreCompleto)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Afiliado.NombreCompleto)
+            </th>
+
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Especialidad)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.PrestadorMedico.NombreCompleto)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Afiliado.NombreCompleto)
+                </td>
+
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.IdTurno">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.IdTurno">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.IdTurno">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
