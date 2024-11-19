@@ -1,10 +1,12 @@
 ﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+using Microsoft.AspNetCore.Http;
 
 namespace MVCGalenos.Models
 {
     public class Laboratorio
     {
-        public int Id { get; set; }
+        public int IdLaboratorio { get; set; }
 
         [Required]
         [Display(Name = "Especialidad")]

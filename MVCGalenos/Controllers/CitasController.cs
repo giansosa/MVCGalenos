@@ -161,5 +161,8 @@ namespace MVCGalenos.Controllers
         {
             return _context.Citas.Any(e => e.IdCita == id);
         }
+            
     }
+
+
 }

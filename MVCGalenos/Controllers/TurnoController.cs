@@ -114,9 +114,7 @@ namespace MVCGalenos.Controllers
 
 
 
-
         }
-
 
         // GET: Turno/Create
         public IActionResult Create(TurnoViewModel turnoViewModel)
@@ -129,7 +127,7 @@ namespace MVCGalenos.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create2(TurnoViewModel turnoViewModel)
+        public async Task<IActionResult> Create2(TurnoViewModel turnoViewModel)
         {
             if (ModelState.IsValid)
             {
@@ -142,7 +140,7 @@ namespace MVCGalenos.Controllers
                 };
 
                 _context.Add(turno);
-                _context.SaveChangesAsync();
+                await _context.SaveChangesAsync();
 
 
                 return RedirectToAction(nameof(Index));
@@ -185,6 +183,12 @@ namespace MVCGalenos.Controllers
                 return NotFound();
             }
             return View(turno);
+        }
+        // GET: Turno/Index
+        public IActionResult Index()
+        {
+            var turnos = _context.Turnos.Include(t => t.PrestadorMedico).Include(t => t.Afiliado).ToList();
+            return View(turnos);
         }
 
         // POST: Turnoes/Edit/5
